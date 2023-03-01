@@ -2,34 +2,29 @@ import express, {Request, Response} from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import { UserRouter } from './router/user.router';
+import { ConfigServer } from './config/config';
 
 
-class ServerBootstrap {
-
+class ServerBootstrap extends ConfigServer {
    // Properties
    public app: express.Application = express();
-   private port:number = 3000;
+   private port:number = this.getNumberEnv('PORT');
+
 
    // Contructor
-   constructor() {
+   constructor() {      
+      super();  // usamos super para traer los methos de ConfigServer
+
       this.app.use(express.json());
       this.app.use(express.urlencoded({ extended: true }));
       this.app.use(morgan('dev'));
       this.app.use(cors());      
 
-      // this.app.get('/api/hola', (req:Request, res: Response) => {
-      //    res.status(200).json({
-      //       message: 'Hola Mundo'
-      //    })
-      // });
-
       this.app.use('/api', this.routers());
-
       this.listen();
    }
 
    // methods
-
    routers():Array<express.Router> {
       return [new UserRouter().router];
    }
