@@ -12,4 +12,6 @@
 
 ### Create routing
 
-### Create enviroment
+### Config enviroment
+
+### Config database
