@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  codrr_db:
+    image: mysql:5.7
+    volumes:
+      - ./mysql/init.sql:docker-entrypoint-initdb.d/init.sql
+    command: --init-file /docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3312:3306"
+    environment:
+      MYSQL_DATABASE: codrr_db
+      MYSQL_ROOT_USER: ucoderr
+      MYSQL_ROOT_PASSWORED: secret
+      MYSQL_USER: ucoderr
+      MYSQL_PASSWORD: secret
