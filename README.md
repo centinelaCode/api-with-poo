@@ -7,3 +7,9 @@
 4. Morgan
 5. Nodemon
 6. Concurrently
+
+### Create server express
+
+### Create routing
+
+### Create enviroment
